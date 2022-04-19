@@ -1,0 +1,67 @@
+﻿<Window x:Class="MihProjectExamen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MihProjectExamen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="334*"/>
+            <RowDefinition Height="48*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="67*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.RowSpan="2" x:Name="TaskListBox" SelectionChanged="TaskListBox_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding TasksCount}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Tag="{Binding Name}" Content="X" Click="DeliteTaskList_Click" Width="30"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="Задачи" Grid.Column="1" Name="NameBox" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+        <ListView Grid.Column="1" Grid.Row="1" Name="TaskBox">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Done}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding DisplayDue}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="X" Click="DeliteTask_Click" Tag="{Binding Title}" Width="30"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button HorizontalAlignment="Left" Margin="10 0" x:Name="AddTaskListBt" Content="+" Grid.Column="0" Grid.Row="2" Width="40" Height="30" Click="AddTaskListBt_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="10 0" KeyDown="AddTaskListTextBox_KeyDown" Visibility="Hidden" x:Name="AddTaskListTextBox" Grid.Column="0" Grid.Row="2" Width="200" Height="30"/>
+        <Button HorizontalAlignment="Left" Margin="10 0" x:Name="AddTaskBt" Content="+" Grid.Column="1" Grid.Row="2" Width="40" Height="30" Click="AddTaskBt_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="10 0" KeyDown="AddTaskTextBox_KeyDown" Visibility="Hidden" x:Name="AddTaskTextBox" Grid.Column="1" Grid.Row="2" Width="200" Height="30"/>
+
+    </Grid>
+</Window>
